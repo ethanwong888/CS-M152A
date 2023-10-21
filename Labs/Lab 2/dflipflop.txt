@@ -1,0 +1,52 @@
+testbench
+
+module testbench;
+  reg d;
+  reg clk;
+  wire q, q_bar;
+  
+  dflipflop dut(.d(d), .clk(clk), .q(q), .q_bar(q_bar));
+  
+  initial begin
+    // Write your test cases
+    clk = 0;
+    d <= 0;
+    #2
+    $display("q=%b", q);
+    d <= 1;
+    #2
+    $display("q=%b", q);
+    d <= 0;
+    #2
+    $display("q=%b", q);
+    d <= 1;
+    #2
+    $display("q=%b", q);
+    
+  end
+  
+  always #1 clk=~clk;
+  
+endmodule
+
+
+
+
+design
+
+// Complete the piece of code and write testbench to validate its working
+
+module dflipflop(
+  input clk,
+  input d,
+  output q, q_bar);
+  
+  reg q, q_bar;
+  
+  // Implement your logic here
+  always @(posedge clk) begin
+    q <= d;
+    q_bar <= ~d;
+  end
+    
+endmodule
